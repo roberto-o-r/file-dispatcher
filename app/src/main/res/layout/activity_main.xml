@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/layout_configuracion"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="18dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Escribe la URL del archivo maestro:" />
+
+        <EditText
+            android:id="@+id/text_url"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textNoSuggestions" />
+
+        <Button
+            android:id="@+id/button_aceptar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Aceptar" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="* El archivo maestro debe contener en cada línea los siguientes valores separados por una coma: La URL para localizar el recurso y el tiempo en segundos durante el cual se desea mostrar. Se admiten recursos de tipo imagen JPG, PNG y documentos PDF. "
+            android:textSize="10sp"/>
+    </LinearLayout>
+
+    <es.voghdev.pdfviewpager.library.PDFViewPager
+        android:id="@+id/view_pdf"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/image_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+</android.support.constraint.ConstraintLayout>
