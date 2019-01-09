@@ -102,11 +102,13 @@ public class MainActivity extends AppCompatActivity implements DownloadFile.List
                     BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
                     String str;
                     while ((str = in.readLine()) != null) {
-                        Archivo archivo = new Archivo();
-                        archivo.setUrl(str.split(",")[0]);
-                        archivo.setSegundos(Integer.parseInt(str.split(",")[1]));
+                        if(!str.trim().equals("")) {
+                            Archivo archivo = new Archivo();
+                            archivo.setUrl(str.split(",")[0]);
+                            archivo.setSegundos(Integer.parseInt(str.split(",")[1]));
 
-                        archivos.add(archivo);
+                            archivos.add(archivo);
+                        }
                     }
                     in.close();
                 } catch (MalformedURLException e) {
