@@ -40,7 +40,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="* El archivo maestro debe contener en cada línea los siguientes valores separados por una coma: La URL para localizar el recurso y el tiempo en segundos durante el cual se desea mostrar. Se admiten recursos de tipo imagen JPG, PNG y documentos PDF. "
+            android:text="* El archivo maestro debe contener en cada línea los siguientes valores separados por una coma: La URL para localizar el recurso y el tiempo en segundos durante el cual se desea mostrar. Se admiten recursos de tipo imagen JPG, PNG y documentos PDF. v21.03.08"
             android:textSize="10sp"/>
     </LinearLayout>
 
@@ -52,6 +52,12 @@
 
     <ImageView
         android:id="@+id/image_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <VideoView
+        android:id="@+id/video_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />

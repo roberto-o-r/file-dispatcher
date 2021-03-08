@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements DownloadFile.List
     PDFViewPager viewPdf;
     @BindView(R.id.image_main)
     ImageView imageMain;
+    @BindView(R.id.video_main)
+    VideoView videoMain;
 
     PDFPagerAdapter adapter;
     RemotePDFViewPager viewPager;
@@ -163,6 +166,9 @@ public class MainActivity extends AppCompatActivity implements DownloadFile.List
         if(archivo.getUrl().contains(".jpeg") || archivo.getUrl().contains(".jpg") || archivo.getUrl().contains(".png")) {
             CargarImg(archivo);
         }
+        if(archivo.getUrl().contains(".mp4")) {
+            CargarVid(archivo);
+        }
     }
 
     private void CargarPdf(Archivo archivo) {
@@ -170,13 +176,14 @@ public class MainActivity extends AppCompatActivity implements DownloadFile.List
         this.viewPdf.setVisibility(View.VISIBLE);
         this.layoutConfiguracion.setVisibility(View.GONE);
         this.imageMain.setVisibility(View.GONE);
+        this.videoMain.setVisibility(View.GONE);
 
         // Actualizar hora de última actualización.
         Calendar localCalendar = Calendar.getInstance();
         SimpleDateFormat localSimpleDateFormat = new SimpleDateFormat("HH:mm");
         getSupportActionBar().setTitle("Última Actualización: " + localSimpleDateFormat.format(localCalendar.getTime()));
 
-        // Cargar y mostrar imagen.
+        // Cargar y mostrar pdf.
         this.viewPdf.setVisibility(View.VISIBLE);
         this.viewPager = new RemotePDFViewPager(this, archivo.getUrl(), this);
     }
@@ -186,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements DownloadFile.List
         this.imageMain.setVisibility(View.VISIBLE);
         this.layoutConfiguracion.setVisibility(View.GONE);
         this.viewPdf.setVisibility(View.GONE);
+        this.videoMain.setVisibility(View.GONE);
 
         // Actualizar hora de última actualización.
         Calendar localCalendar = Calendar.getInstance();
@@ -195,6 +203,24 @@ public class MainActivity extends AppCompatActivity implements DownloadFile.List
         // Cargar y mostrar imagen.
         this.imageMain.setVisibility(View.VISIBLE);
         Picasso.get().load(archivo.getUrl()).memoryPolicy(MemoryPolicy.NO_CACHE).networkPolicy(NetworkPolicy.NO_CACHE).into(imageMain);
+    }
+
+    private void CargarVid(Archivo archivo) {
+        // Ocultar configuración.
+        this.imageMain.setVisibility(View.GONE);
+        this.layoutConfiguracion.setVisibility(View.GONE);
+        this.viewPdf.setVisibility(View.GONE);
+        this.videoMain.setVisibility(View.VISIBLE);
+
+        // Actualizar hora de última actualización.
+        Calendar localCalendar = Calendar.getInstance();
+        SimpleDateFormat localSimpleDateFormat = new SimpleDateFormat("HH:mm");
+        getSupportActionBar().setTitle("Última Actualización: " + localSimpleDateFormat.format(localCalendar.getTime()));
+
+        // Cargar y mostrar video.
+        this.videoMain.setVisibility(View.VISIBLE);
+        this.videoMain.setVideoPath(archivo.getUrl());
+        this.videoMain.start();
     }
 
     @OnClick(R.id.button_aceptar)
